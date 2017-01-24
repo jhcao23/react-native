@@ -153,8 +153,8 @@ RCT_EXPORT_METHOD(showShareActionSheetWithOptions:(NSDictionary *)options
     RCTLogError(@"No `url` or `message` to share");
     return;
   }
-
-  UIActivityViewController *shareController = [[UIActivityViewController alloc] initWithActivityItems:items applicationActivities:nil];
+  NSArray *includedActivityTypes = [RCTConvert NSStringArray:options[@"includedActivityTypes"]];
+  UIActivityViewController *shareController = [[UIActivityViewController alloc] initWithActivityItems:items applicationActivities:includedActivityTypes];
 
   NSString *subject = [RCTConvert NSString:options[@"subject"]];
   if (subject) {
